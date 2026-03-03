@@ -1,6 +1,6 @@
-# SafeSpace (2.0) – AI Mental Health Therapist
+# AstraSentinel: An AI-Powered Crisis Detection & Emotional Response System
 
-SafeSpace is an AI-powered mental health companion that combines a chat-style frontend, an LLM-based backend agent, and integrations with Twilio WhatsApp and Google Maps. It is designed to offer empathetic, tool-augmented support, including:
+AstraSentinel is an AI-powered mental health companion that combines a chat-style frontend, an LLM-based backend agent, and integrations with Twilio WhatsApp and Google Maps. It is designed to offer empathetic, tool-augmented support, including:
 
 - Conversational mental health guidance using a therapeutic LLM (MedGemma via Groq)
 - Detection of crisis scenarios with an emergency call tool (Twilio voice)
@@ -16,16 +16,21 @@ The project is structured as a small, opinionated demo of how to build a **tool-
 ## Project Structure
 
 ```text
-safespace-ai-therapist/
+AstraSentinel/
 ├── backend/
-│   ├── ai_agent.py         # LangGraph-based AI agent + tools (LLM, emergency call, therapist finder)
-│   ├── config.py           # API keys and configuration (not shown here; you create it)
-│   ├── main.py             # FastAPI backend (JSON /ask + Twilio WhatsApp /whatsapp_ask)
-│   ├── tools.py            # Low-level tool implementations (MedGemma, Twilio call, etc.)
-│   └── test_location_tool.py  # Tests/examples for the location tool
-├── frontend.py              # Streamlit chat UI (web client) talking to FastAPI backend
-├── pyproject.toml           # Project metadata and Python dependencies (managed with uv)
-└── README.md                # Main project README
+│   ├── ai_agent.py              # LangGraph-based AI agent + LLM tool orchestration
+│   ├── config.py                # Environment variable configuration loader
+│   ├── database.py              # Database logic (conversation logs / emergency records)
+│   ├── main.py                  # FastAPI backend (JSON /ask + Twilio WhatsApp /whatsapp_ask)
+│   ├── tools.py                 # MedGemma, Groq, Twilio (call/SMS), Google Maps integrations
+│   └── test_location_tool.py    # Location tool testing and validation
+├── frontend.py                  # Streamlit chat UI + live monitoring interface
+├── pyproject.toml               # Python dependencies (managed via uv)
+├── uv.lock                      # Locked dependency versions
+├── safespace.db                 # SQLite database (conversation + emergency logs)
+├── .env                         # Environment variables (not committed in production)
+├── .gitignore                   # Git ignore rules
+└── README.md                    # Project documentation
 ```
 
 ### Key Components
@@ -461,7 +466,7 @@ Dependencies (from `pyproject.toml`):
 
 ## Setup with `uv`
 
-All commands below assume you are in the project root: `safespace-ai-therapist/`.
+All commands below assume you are in the project root: `Final\AstraSentinel\`.
 
 ### 1. Create and activate the virtual environment
 
